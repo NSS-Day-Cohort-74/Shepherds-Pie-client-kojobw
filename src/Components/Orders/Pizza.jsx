@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react"
 import { getToppingsByPizzaId, getPizzaById, deletePizza } from "../../Services/pizzaServices"
+import { useNavigate } from "react-router-dom"
+
 
 
 export const Pizza = ({pizzaObj, getAndSetAllPizzas}) => {
     const [toppings, setAllToppings] = useState()
     const [pizza, setPizza] = useState() 
+    const navigate = useNavigate()
     
     console.log(pizzaObj.id)
   
@@ -23,9 +26,15 @@ export const Pizza = ({pizzaObj, getAndSetAllPizzas}) => {
     },[])
 
     const handlePizzaDelete = (event) => {
+        event.preventDefault()
         deletePizza(pizzaObj.id).then(() => {
             getAndSetAllPizzas()
         })
+    }
+
+    const handleEditPizza = (event) => {
+        event.preventDefault()
+        navigate(`editpizzaform/${pizzaObj.id}`)
     }
     
     if(!pizza){return null}
@@ -45,7 +54,7 @@ export const Pizza = ({pizzaObj, getAndSetAllPizzas}) => {
             </div>
             <footer className="btn-container">
                 <button className="btn-warning" onClick={handlePizzaDelete}>Remove</button>
-                <button className="btn-secondary">Edit Pizza</button>
+                <button className="btn-secondary" onClick={handleEditPizza}>Edit Pizza</button>
             </footer>
         </section>
     </>
