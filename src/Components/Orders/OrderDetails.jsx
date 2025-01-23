@@ -1,4 +1,7 @@
-//import { useParams } from "react-router-dom";
+
+import { useParams } from "react-router-dom";
+import { PizzaList } from "./PizzaList";
+
 // get orders and expand with customers
 
 import { useEffect, useState } from "react";
@@ -37,6 +40,7 @@ export const OrderDetails = () => {
                 <strong>Price:</strong>
                 <span>{order}</span>
             </div>
+            <PizzaList orderId={orderId}/>
         </div>
     );
 };
