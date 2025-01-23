@@ -1,6 +1,6 @@
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useEffect, useState,} from "react"
-import { getAllCheeses, getAllSauces, getAllSizes, getAllToppings, getPizzaById, getToppingsByPizzaId } from "../../Services/pizzaServices"
+import { createPizzaToppingEntry, deletePizzaToppingsByPizzaId, getAllCheeses, getAllSauces, getAllSizes, getAllToppings, getPizzaById, getToppingsByPizzaId, updatePizzaByPizzaId } from "../../Services/pizzaServices"
 
 export const EditPizzaForm = () => {
     const [pizza, setPizza] = useState()
@@ -9,8 +9,8 @@ export const EditPizzaForm = () => {
     const [cheeses, setCheeses] = useState()
     const [toppings, setToppings] = useState()
     const [currentPizzaToppings, setCurrentPizzaToppings] = useState()
-    const [payload, setPayload] = useState()
     const {pizzaId} = useParams()
+    const navigate = useNavigate()
     
  
     const getAndSetPizza = () => {
@@ -39,23 +39,52 @@ export const EditPizzaForm = () => {
     },[])
 
     const handleToppingChange = (event) => {
-        //if event.target.id comes through matches any of the toppings in the currentPizzaToppingsArray, if it does match
-        //delete from pizzacurrenttoppings ("slice out") 
-        //else we need to create and add a new currentPizzaToppings object in array
-        const foundTopping = currentPizzaToppings.find(currentTopping => {
-            console.log({currentTopping, compareId: Number(event.target.id)});
-
-            return currentTopping.toppingId === Number(event.target.id)
-        });
-        if (foundTopping){
-             const newPizzaToppings = currentPizzaToppings.filter(currentTopping => {
-                return currentTopping.toppingId !== foundTopping.id
-             });
-              console.log(newPizzaToppings)
+        const foundTopping = currentPizzaToppings.find(currentPizzaTopping => {
+            return currentPizzaTopping.toppingId === Number(event.target.id)
+        })
+        if(foundTopping){
+            console.log(foundTopping)
+            const newCurrentToppings = currentPizzaToppings.filter(currentPizzaTopping => {
+                return currentPizzaTopping.toppingId !== foundTopping.toppingId
+            })
+            setCurrentPizzaToppings(newCurrentToppings)
+        }else{
+            const newTopping = {
+                pizzaId: pizza.id,
+                toppingId: Number(event.target.id)
+            }
+            const newCurrentToppings = [...currentPizzaToppings,newTopping]
+            setCurrentPizzaToppings(newCurrentToppings)
         }
+        
+    }
+
+    const handleSave = (event) => {
+        event.preventDefault()
+        const updatedPizza = {
+            id: pizza.id,
+            sizeId: pizza.sizeId,
+            cheeseId: pizza.cheeseId,
+            sauceId:  pizza.sauceId,
+            orderId: pizza.orderId
+        }
+        updatePizzaByPizzaId(updatedPizza)
+        deletePizzaToppingsByPizzaId(pizza)
+        createPizzaToppingEntry(currentPizzaToppings)
+        navigate(`/orders/${pizza.order.id}`)
+        
     }
     
-    if (!pizza || !sizes || !sauces || !cheeses || !toppings ||! currentPizzaToppings) {return null}
+    if (!pizza || !sizes || !sauces || !cheeses || !toppings ||!currentPizzaToppings) {return null}
+    const updatedCost = () => {
+        let totalCost = 0
+        const sizeCost = sizes.find(size => size.id === pizza.sizeId)
+        if (sizeCost) {
+            totalCost = sizeCost.cost + (currentPizzaToppings.length*.5)
+        }
+        return totalCost
+    } 
+
     return <>
         <form className="form">
             <h2>Edit Pizza for Order #{pizza.order.id}</h2>
@@ -122,7 +151,10 @@ export const EditPizzaForm = () => {
                     </div>
             </fieldset>
             <fieldset>
-                <button className="btn-info">Save Changes</button>
+                <div>Updated Cost: ${updatedCost()}</div>
+            </fieldset>
+            <fieldset>
+                <button className="btn-info" onClick={handleSave}>Save Changes</button>
             </fieldset>
         </form>
     </>

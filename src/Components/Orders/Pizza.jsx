@@ -50,7 +50,7 @@ export const Pizza = ({pizzaObj, getAndSetAllPizzas}) => {
                 }.
             </div>
             <div className="pizza-info">
-                <h4>Total Cost: {totalPizzaCost} </h4>
+                <h4>Total Cost: ${totalPizzaCost} </h4>
             </div>
             <footer className="btn-container">
                 <button className="btn-warning" onClick={handlePizzaDelete}>Remove</button>
