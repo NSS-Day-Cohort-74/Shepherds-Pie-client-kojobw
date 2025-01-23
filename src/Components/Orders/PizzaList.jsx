@@ -3,6 +3,7 @@ import { getAllPizzas, getAllPizzaToppings } from "../../Services/pizzaServices"
 import { Pizza } from "./Pizza"
 import "./pizza.css"
 import { useNavigate } from "react-router-dom"
+import { Pizza } from "./Pizza"
 
 export const PizzaList = ({orderId}) => {
     const [allPizzas, setAllPizzas] = useState([])
