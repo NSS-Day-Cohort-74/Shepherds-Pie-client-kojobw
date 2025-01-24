@@ -8,8 +8,9 @@ import { NewOrderForm } from "../Components/Forms/NewOrderForm"
 import { EmployeeList } from "../Components/Employees/EmployeeList"
 import { SalesReport } from "../Components/SalesReports/SalesReports"
 import { EditEmployeeForm } from "../Components/Forms/EditEmployeeForm"
+import { Authorized } from "./Authorized"
 
-export const ApplicationViews = () => {
+export const ApplicationViews = (Authorized) => {
   const [currentUser, setCurrentUser] = useState({})
 
   useEffect(() => {
@@ -34,7 +35,7 @@ export const ApplicationViews = () => {
           <Route index element={<OrdersList />}/> 
           <Route path=":orderId" element={<OrderDetails/>} />
         </Route>
-        <Route path="neworders" element={<NewOrderForm currentUser={currentUser}/>} />
+        <Route path="/neworders" element={<NewOrderForm currentUser={currentUser}/>} />
         <Route path="employees">
           <Route index element={<EmployeeList />} />
           <Route path=":userId" element={<EditEmployeeForm />} />
@@ -42,7 +43,7 @@ export const ApplicationViews = () => {
         <Route path="salesreports" element={<SalesReport />} />
         
       </Route>
-  </Routes>
+    </Routes>
 
-)
+  )
 }
