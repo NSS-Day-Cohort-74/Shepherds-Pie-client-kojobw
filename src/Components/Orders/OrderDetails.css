@@ -1,0 +1,156 @@
+.btn-cancel {
+    background-color: red;
+}
+.btn-driver {
+    color: rgb(0, 56, 0);
+    border-color: green;
+    border-width: .1rem;
+}
+/* General Container */
+.order-info {
+    background-color: #ffffff;
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .order-info:hover {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Info Item Styling */
+  .info-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .info-item strong {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+  }
+  
+  .info-item span {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  /* Customer Info Section */
+  .customer-info {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    border-left: 4px solid #3498db;
+  }
+  
+  .customer-info div {
+    font-size: 14px;
+    color: #444;
+    padding: 5px 0;
+  }
+  
+  .customer-info div strong {
+    font-weight: 600;
+    color: #3498db;
+  }
+  
+  /* Button Styling */
+  .btn-driver,
+  .btn-cancel {
+    font-size: 15px;
+    padding: 12px 25px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 600;
+    transition: transform 0.3s ease;
+  }
+  
+  /* Button Colors */
+  .btn-driver {
+    background-color: #2ecc71;
+    color: #ffffff;
+    box-shadow: 0 5px 10px rgba(46, 204, 113, 0.3);
+  }
+  
+  .btn-driver:hover {
+    background-color: #27ae60;
+    transform: translateY(-2px);
+  }
+  
+  .btn-cancel {
+    background-color: #e74c3c;
+    color: #ffffff;
+    box-shadow: 0 5px 10px rgba(231, 76, 60, 0.3);
+  }
+  
+  .btn-cancel:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+  }
+  
+  /* Driver Selection Dropdown */
+  select {
+    font-size: 14px;
+    padding: 10px;
+    width: 250px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+    margin-top: 15px;
+    transition: border 0.3s ease;
+  }
+  
+  select:focus {
+    border-color: #3498db;
+    outline: none;
+  }
+  
+  /* Show/Hide Section */
+  div {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  div select {
+    margin-top: 10px;
+  }
+  
+  /* Cancel Order Link Styling */
+  .link {
+    text-decoration: none;
+  }
+  
+  .link button {
+    margin-top: 15px;
+    width: 100%;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .order-info {
+      padding: 15px;
+    }
+  
+    .info-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .btn-driver,
+    .btn-cancel {
+      width: 100%;
+      font-size: 16px;
+    }
+  
+    select {
+      width: 100%;
+    }
+  }

@@ -88,7 +88,7 @@ export const createPizza = (pizza) => {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(pizza)
-    })
+    }).then(res => res.json())
 }
 
 export const getAllPizzaToppings = () => {

@@ -5,6 +5,7 @@ import {
   getAllPizzaToppings,
   getAllSizes,
 } from "../../Services/pizzaServices";
+import "./SalesReport.css"
 
 export const SalesReport = () => {
   const [orders, setOrders] = useState([]);
@@ -67,19 +68,15 @@ export const SalesReport = () => {
     <>
       <section>
         <h1> Sales Report</h1>
-        <div>Total Orders: {orders.length}</div>
-        <div>Total in Sales: ${calculateTotalSales().toFixed(2)}</div>{/*.toFixed(2) on it will convert it to "56.78", rounding it to two decimal places*/}
-        <div>
+        <div className="sales">Total Orders: {orders.length}</div>
+        <div className="sales">Total in Sales: ${calculateTotalSales().toFixed(2)}</div>{/*.toFixed(2) on it will convert it to "56.78", rounding it to two decimal places*/}
+        <div className="sales">
           Average Order Value: $
           {(calculateTotalSales() / orders.length).toFixed(2)}{" "}
         </div>
       </section>
       <section>
-        <h1> Most popular:</h1>
-        <div>Pizza Size:  Order count:</div>
-        <div>Cheese Type:  Order count:</div>
-        <div>Sauce Type:  Order count:</div>
-       
+        <div  className="message">More detailed Sales Report will be available in version 2.1.8. Stay tuned for the upcoming release for enhanced reporting features.</div>
         
       </section>
     </>
