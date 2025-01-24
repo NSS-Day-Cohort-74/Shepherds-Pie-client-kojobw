@@ -4,7 +4,8 @@
     text-align: center;
     padding: 5rem 3rem;
     border: 1px solid var(--outline);
-    background-color: white;
+    background-image: url(https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L2lzMTYwNjItaW1hZ2Uta3d2eWZrd3IuanBn.jpg);
+    background-size: cover;
     border-radius: 0.5rem;
   }
   
@@ -18,4 +19,6 @@
   /* This targets any div that is a child of an element with the .welcome-container class */
   .welcome-container > div {
     font-style: italic;
+    color: beige;
+    size: 2rem;
   }

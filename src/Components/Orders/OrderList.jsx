@@ -1,9 +1,10 @@
 
 import { Link } from "react-router-dom"
-import { getOrders } from "../../Services/employeeService"
+
 import { useEffect, useState } from "react"
 import { Order } from "./Order"
 import "./OrderList.css"
+import { getOrders } from "../../Services/orderServices"
 
 
 
