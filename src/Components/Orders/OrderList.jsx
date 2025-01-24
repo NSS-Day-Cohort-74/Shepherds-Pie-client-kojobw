@@ -11,7 +11,10 @@ import "./OrderList.css"
 export const OrdersList = () =>{
     const [ orders,setOrders]=useState([])
     const [ sortedOrders, setSortedOrders]=useState([])
-    const [selectedDate, setSelectedDate]=useState("") //set as a string to capture date string from input event
+    const [selectedDate, setSelectedDate]=useState(() => {
+        const today = new Date()
+        return today.toISOString().split("T")[0]
+    }) //set as a string to capture date string from input event
     const [filteredOrders, setFilteredOrders] = useState([])
 
     useEffect(()=>{
