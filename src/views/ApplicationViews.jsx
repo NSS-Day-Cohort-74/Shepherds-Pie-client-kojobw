@@ -11,7 +11,8 @@ import { EditEmployeeForm } from "../Components/Forms/EditEmployeeForm"
 import { NewPizzaForm } from "../Components/Forms/NewPizzaForm"
 import { EditPizzaForm } from "../Components/Forms/EditPizzaForm"
 
-export const ApplicationViews = () => {
+
+export const ApplicationViews = (Authorized) => {
   const [currentUser, setCurrentUser] = useState({})
 
   useEffect(() => {
@@ -38,7 +39,7 @@ export const ApplicationViews = () => {
           <Route path=":orderId/addpizzaform" element={<NewPizzaForm />}/>
           <Route path=":orderId/editpizzaform/:pizzaId" element={<EditPizzaForm />} />
         </Route>
-        <Route path="neworders" element={<NewOrderForm currentUser={currentUser}/>} />
+        <Route path="/neworders" element={<NewOrderForm currentUser={currentUser}/>} />
         <Route path="employees">
           <Route index element={<EmployeeList />} />
           <Route path=":userId" element={<EditEmployeeForm />} />
@@ -46,7 +47,7 @@ export const ApplicationViews = () => {
         <Route path="salesreports" element={<SalesReport />} />
         
       </Route>
-  </Routes>
+    </Routes>
 
-)
+  )
 }

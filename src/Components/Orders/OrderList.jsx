@@ -18,7 +18,7 @@ export const OrdersList = () =>{
     }) //set as a string to capture date string from input event
     const [filteredOrders, setFilteredOrders] = useState([])
 
-    useEffect(()=>{ 
+    useEffect(()=>{
         getOrders().then((ordersArray)=>{
             setOrders(ordersArray)
         })
@@ -26,16 +26,12 @@ export const OrdersList = () =>{
     },[])
     //creating a copy of array when sorting the copy instead of original array
     useEffect(()=>{
-        const sorted=[...orders].sort((a,b)=>new Date(b.dateTime)-new Date(a.dateTime));// Sort the orders by dateTime (newest first)
-        setSortedOrders(sorted)
-    },[orders])
+        const sorted=[...filteredOrders].sort((a,b)=>new Date(b.dateTime)-new Date(a.dateTime));// Sort the orders by dateTime (newest first)
+        setFilteredOrders(sorted)
+    },[filteredOrders])
 
     useEffect(() => {
-        if (!selectedDate || !sortedOrders){
-            //defaults to sortedOrders if no date is selected. 
-            setFilteredOrders(sortedOrders)
-            return
-        }
+        if (!selectedDate){ return null}
         const foundOrders = orders.filter(order => {
             const orderDate = new Date(order.dateTime)
             const filterDate = new Date(selectedDate) //creates the entry in UTC not local time.
