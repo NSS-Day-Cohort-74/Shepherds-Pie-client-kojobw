@@ -7,3 +7,7 @@ export const getOrderByOrderId = (orderId) => {
 export const getOrders = () => {
     return fetch ("http://localhost:8088/orders?_expand=customer").then((response)=>response.json())
 }
+
+export const getOrdersAndTheirPizzas = () => {
+    return fetch ("http://localhost:8088/orders?_expand=").then((response)=>response.json())
+}
