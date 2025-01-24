@@ -29,3 +29,17 @@ export const getAllCheeses = () => {
 export const getAllToppings = () => {
     return fetch (`http://localhost:8088/toppings`).then(res => res.json())
 }
+
+export const postOrder = (pizza) => {
+    return fetch('http://localhost:8088/orders' , {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(pizza),
+    }).then((res) => res.json())
+    }
+
+export const getPizzas = () => {
+    return fetch('http://localhost:8088/pizzas').then(res => res.json())
+}
