@@ -18,7 +18,7 @@ export const OrdersList = () =>{
     }) //set as a string to capture date string from input event
     const [filteredOrders, setFilteredOrders] = useState([])
 
-    useEffect(()=>{
+    useEffect(()=>{ 
         getOrders().then((ordersArray)=>{
             setOrders(ordersArray)
         })
