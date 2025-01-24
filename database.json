@@ -1,0 +1,372 @@
+{
+    "roles": [
+      { "id": 1, "name": "Customer Service Associate" },
+      { "id": 2, "name": "Staff Member" }
+    ],
+    "users": [
+      {
+        "id": 1,
+        "address": "101 Cherry Lane",
+        "phoneNumber": "555-0111",
+        "email": "john.doe@pizza.com",
+        "isAvailable": false,
+        "name": "John Doe",
+        "roleId": 1
+      },
+      {
+        "id": 2,
+        "address": "202 Pine Road",
+        "phoneNumber": "555-0222",
+        "email": "jane.smith@pizza.com",
+        "isAvailable": true,
+        "name": "Jane Smith",
+        "roleId": 2
+      },
+      {
+        "id": 3,
+        "address": "303 Oak Avenue",
+        "phoneNumber": "555-0333",
+        "email": "mike.johnson@pizza.com",
+        "isAvailable": true,
+        "name": "Mike Johnson",
+        "roleId": 2
+      },
+      {
+        "id": 4,
+        "address": "404 Maple Street",
+        "phoneNumber": "555-0444",
+        "email": "sara.lee@pizza.com",
+        "isAvailable": false,
+        "name": "Sara Lee",
+        "roleId": 1
+      },
+      {
+        "id": 5,
+        "address": "505 Cedar Blvd",
+        "phoneNumber": "555-0555",
+        "email": "jim.beam@pizza.com",
+        "isAvailable": true,
+        "name": "Jim Beam",
+        "roleId": 2
+      },
+      {
+        "id": 6,
+        "address": "606 Walnut Dr",
+        "phoneNumber": "555-0666",
+        "email": "amy.winehouse@pizza.com",
+        "isAvailable": true,
+        "name": "Amy Winehouse",
+        "roleId": 2
+      },
+      {
+        "id": 7,
+        "address": "707 Birch Lane",
+        "phoneNumber": "555-0777",
+        "email": "rick.astley@pizza.com",
+        "isAvailable": false,
+        "name": "Rick Astley",
+        "roleId": 1
+      },
+      {
+        "id": 8,
+        "address": "808 Elm St",
+        "phoneNumber": "555-0888",
+        "email": "bob.marley@pizza.com",
+        "isAvailable": true,
+        "name": "Bob Marley",
+        "roleId": 2
+      }
+    ],
+    "customers": [
+      {
+        "id": 1,
+        "name": "Alice Smith",
+        "phoneNumber": "555-1111",
+        "address": "123 Main Street"
+      },
+      {
+        "id": 2,
+        "name": "Bob Johnson",
+        "phoneNumber": "555-2222",
+        "address": null
+      },
+      {
+        "id": 3,
+        "name": "Charlie Brown",
+        "phoneNumber": "555-3333",
+        "address": "789 Maple Avenue"
+      },
+      {
+        "id": 4,
+        "name": "Diana Prince",
+        "phoneNumber": "555-4444",
+        "address": null
+      },
+      {
+        "id": 5,
+        "name": "Edward Norton",
+        "phoneNumber": "555-5555",
+        "address": "456 Oak Lane"
+      },
+      {
+        "id": 6,
+        "name": "Fiona Apple",
+        "phoneNumber": "555-6666",
+        "address": null
+      }
+    ],
+    "orders": [
+      {
+        "id": 1,
+        "dateTime": "2025-01-22T10:00:00.000Z",
+        "totalCost": 24,
+        "status": "Pending",
+        "isDelivery": false,
+        "customerId": 1,
+        "tipLeft": true
+      },
+      {
+        "id": 2,
+        "dateTime": "2025-01-22T10:10:00.000Z",
+        "totalCost": 27,
+        "status": "Pending",
+        "isDelivery": false,
+        "customerId": 2,
+        "tipLeft": false
+      },
+      {
+        "id": 3,
+        "dateTime": "2025-01-22T10:20:00.000Z",
+        "totalCost": 29,
+        "status": "Pending",
+        "isDelivery": true,
+        "customerId": 3,
+        "tipLeft": false
+      },
+      {
+        "id": 4,
+        "dateTime": "2025-01-22T10:30:00.000Z",
+        "totalCost": 24,
+        "status": "Pending",
+        "isDelivery": false,
+        "customerId": 4,
+        "tipLeft": true
+      },
+      {
+        "id": 5,
+        "dateTime": "2025-01-22T10:40:00.000Z",
+        "totalCost": 16,
+        "status": "Pending",
+        "isDelivery": true,
+        "customerId": 5,
+        "tipLeft": true
+      },
+      {
+        "id": 6,
+        "dateTime": "2025-01-22T10:50:00.000Z",
+        "totalCost": 13,
+        "status": "Pending",
+        "isDelivery": true,
+        "customerId": 6,
+        "tipLeft": false
+      }
+    ],
+    "userOrders": [
+      { "id": 1, "orderId": 1, "userId": 1, "isDeliveryDriver": false },
+      { "id": 2, "orderId": 2, "userId": 2, "isDeliveryDriver": false },
+      { "id": 3, "orderId": 3, "userId": 3, "isDeliveryDriver": true },
+      { "id": 4, "orderId": 4, "userId": 4, "isDeliveryDriver": false },
+      { "id": 5, "orderId": 5, "userId": 5, "isDeliveryDriver": true },
+      { "id": 6, "orderId": 6, "userId": 6, "isDeliveryDriver": true }
+    ],
+    "sizes": [
+      {
+        "id": 1,
+        "size": "Small - 10in",
+        "cost": 10
+      },
+      {
+        "id": 2,
+        "size": "Medium - 14in",
+        "cost": 12
+      },
+      {
+        "id": 3,
+        "size": "Large - 18in",
+        "cost": 15
+      }
+    ],
+    "cheeses": [
+      {
+        "id": 1,
+        "name": "Buffalo Mozzarella"
+      },
+      {
+        "id": 2,
+        "name": "Four Cheese"
+      },
+      {
+        "id": 3,
+        "name": "Vegan"
+      },
+      {
+        "id": 4,
+        "name": "Cheeseless"
+      }
+    ],
+    "sauces": [
+      {
+        "id": 1,
+        "name": "Marinara"
+      },
+      {
+        "id": 2,
+        "name": "Arrabbiata"
+      },
+      {
+        "id": 3,
+        "name": "Garlic White"
+      },
+      {
+        "id": 4,
+        "name": "Sauceless"
+      }
+    ],
+    "toppings": [
+      {
+        "id": 1,
+        "name": "Sausage",
+        "cost": 0.5
+      },
+      {
+        "id": 2,
+        "name": "Pepperoni",
+        "cost": 0.5
+      },
+      {
+        "id": 3,
+        "name": "Mushroom",
+        "cost": 0.5
+      },
+      {
+        "id": 4,
+        "name": "Onion",
+        "cost": 0.5
+      },
+      {
+        "id": 5,
+        "name": "Green Pepper",
+        "cost": 0.5
+      },
+      {
+        "id": 6,
+        "name": "Black Olives",
+        "cost": 0.5
+      },
+      {
+        "id": 7,
+        "name": "Basil",
+        "cost": 0.5
+      },
+      {
+        "id": 8,
+        "name": "Extra Cheese",
+        "cost": 0.5
+      }
+    ],
+    "pizzas": [
+      {
+        "id": 1,
+        "sizeId": 1,
+        "cheeseId": 1,
+        "sauceId": 1,
+        "orderId": 1
+      },
+      {
+        "id": 2,
+        "sizeId": 2,
+        "cheeseId": 2,
+        "sauceId": 2,
+        "orderId": 1
+      },
+      {
+        "id": 3,
+        "sizeId": 3,
+        "cheeseId": 3,
+        "sauceId": 3,
+        "orderId": 2
+      },
+      {
+        "id": 4,
+        "sizeId": 1,
+        "cheeseId": 4,
+        "sauceId": 4,
+        "orderId": 2
+      },
+      {
+        "id": 5,
+        "sizeId": 2,
+        "cheeseId": 1,
+        "sauceId": 2,
+        "orderId": 3
+      },
+      {
+        "id": 6,
+        "sizeId": 3,
+        "cheeseId": 2,
+        "sauceId": 3,
+        "orderId": 3
+      },
+      {
+        "id": 7,
+        "sizeId": 1,
+        "cheeseId": 3,
+        "sauceId": 1,
+        "orderId": 4
+      },
+      {
+        "id": 8,
+        "sizeId": 2,
+        "cheeseId": 4,
+        "sauceId": 2,
+        "orderId": 4
+      },
+      {
+        "id": 9,
+        "sizeId": 3,
+        "cheeseId": 1,
+        "sauceId": 3,
+        "orderId": 5
+      },
+      {
+        "id": 10,
+        "sizeId": 2,
+        "cheeseId": 2,
+        "sauceId": 4,
+        "orderId": 6
+      }
+    ],
+    "pizzaToppings": [
+      { "id": 1, "pizzaId": 1, "toppingId": 1 },
+      { "id": 2, "pizzaId": 1, "toppingId": 2 },
+      { "id": 3, "pizzaId": 2, "toppingId": 3 },
+      { "id": 4, "pizzaId": 2, "toppingId": 4 },
+      { "id": 5, "pizzaId": 3, "toppingId": 5 },
+      { "id": 6, "pizzaId": 3, "toppingId": 6 },
+      { "id": 7, "pizzaId": 4, "toppingId": 7 },
+      { "id": 8, "pizzaId": 4, "toppingId": 1 },
+      { "id": 9, "pizzaId": 5, "toppingId": 2 },
+      { "id": 10, "pizzaId": 5, "toppingId": 3 },
+      { "id": 11, "pizzaId": 6, "toppingId": 4 },
+      { "id": 12, "pizzaId": 6, "toppingId": 5 },
+      { "id": 13, "pizzaId": 7, "toppingId": 6 },
+      { "id": 14, "pizzaId": 7, "toppingId": 7 },
+      { "id": 15, "pizzaId": 8, "toppingId": 2 },
+      { "id": 16, "pizzaId": 8, "toppingId": 4 },
+      { "id": 17, "pizzaId": 9, "toppingId": 3 },
+      { "id": 18, "pizzaId": 9, "toppingId": 7 },
+      { "id": 19, "pizzaId": 10, "toppingId": 1 },
+      { "id": 20, "pizzaId": 10, "toppingId": 8 }
+    ]
+  }
+  
