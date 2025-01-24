@@ -27,11 +27,11 @@ export const OrdersList = () =>{
     //creating a copy of array when sorting the copy instead of original array
     useEffect(()=>{
         const sorted=[...orders].sort((a,b)=>new Date(b.dateTime)-new Date(a.dateTime));// Sort the orders by dateTime (newest first)
-        setSortedOrders(sorted)
-    },[orders])
+        setFilteredOrders(sorted)
+    },[filteredOrders])
 
     useEffect(() => {
-        if (!selectedDate || !sortedOrders){
+        if (!selectedDate ){
             //defaults to sortedOrders if no date is selected. 
             setFilteredOrders(sortedOrders)
             return
