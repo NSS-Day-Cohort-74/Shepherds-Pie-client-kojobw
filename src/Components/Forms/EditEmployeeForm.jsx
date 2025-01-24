@@ -219,7 +219,7 @@ export const EditEmployeeForm = () => {
       <fieldset>
         <div className="form-group">
           <button className="form-btn btn-primary" onClick={handleSave}>
-            Save Post
+            Save Changes
           </button>
         </div>
       </fieldset>

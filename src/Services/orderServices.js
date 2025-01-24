@@ -32,3 +32,13 @@ export const getOrdersAndTheirPizzas = () => {
     return fetch ("http://localhost:8088/orders?_expand=").then((response)=>response.json())
 }
 
+export const updateOrderStatus = (updatedOrderObj) => {
+    return fetch (`http://localhost:8088/orders/${updatedOrderObj.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(updatedOrderObj)
+    })
+}
+

@@ -1,15 +1,14 @@
-
-
 import { useParams } from "react-router-dom";
 import { PizzaList } from "./PizzaList";
-
+import "./OrderDetails.css"
 // get orders and expand with customers
 
 import { useEffect, useState } from "react";
-import { deleteOrder, getOrderByOrderId } from "../../Services/orderServices";
+import { deleteOrder, getOrderByOrderId, updateOrderStatus } from "../../Services/orderServices";
 import { getAllUsers } from "../../Services/userService";
 import { Link } from "react-router-dom";
 import { deletePizza, getPizzas } from "../../Services/pizzaServices";
+import { changeStatus } from "../../Services/employeeService";
 
 export const OrderDetails = () => {
     const { orderId } = useParams()
@@ -18,8 +17,9 @@ export const OrderDetails = () => {
     const [available, setAvailable] = useState({})
     const [users, setUsers] = useState([])
     const [isVisible, setIsVisible] = useState(false);
-    const [selectedDriver, setSelectedDriver] = useState('')
+    const [selectedDriverId, setSelectedDriverId] = useState(0)
     const [currentPizza, setCurrentPizzas] =useState([])
+    const [hideBtn, setHideBtn] = useState(false)
 
     console.log(orderId)
     useEffect(() => {
@@ -37,6 +37,14 @@ export const OrderDetails = () => {
     }, [])
 
     useEffect(() => {
+        if(order.status === "Out For Delivery"){
+            setHideBtn(true)
+        } else {
+            setHideBtn(false)
+        }
+    }, [order])
+
+    useEffect(() => {
         getAllUsers().then(userArray => {
             setUsers(userArray)
         })
@@ -49,8 +57,15 @@ export const OrderDetails = () => {
     }, [users])
 
     const getDriver = (event) => {
-        setSelectedDriver(event.target.value)
-        selectedDriver.isAvailable = false
+        event.preventDefault()
+        const findUser = users.find(user => user.id == event.target.value)
+        changeStatus(findUser)
+        
+        const copyOrder = {...order}
+        copyOrder.status = "Out For Delivery"
+        updateOrderStatus(copyOrder)
+
+        setHideBtn(true)
     }
 
     useEffect(() => {
@@ -86,32 +101,32 @@ export const OrderDetails = () => {
                             <div><strong>Address:</strong> {order.customer?.address}</div>
                         </div>
                     </div>
-                    <div className="info-item">
-                        <strong>Price:</strong>
-                        <span>{order.price}</span>
-                    </div>
-                    {order.isDelivery && (
+                  
+                    {order.isDelivery && !hideBtn && (
+                        
                         <div>
-                            <button onClick={() => { setIsVisible(true) }}>Available Drivers</button>
+                            <button 
+                            className="btn-driver"
+                            onClick={() => { setIsVisible(true) }}>Available Drivers</button>
                             {isVisible && (
                                 <div>
-                                <select key="1" id="drivers" onChange={getDriver}>
+                                <select  id="drivers" onChange={getDriver}>
                                     <option value="">Prompt to select resource...</option>
                                     {available.map((user) => {
                                         return (
-                                            <>
-                                                <option value={user.name}>{user.name}</option>
-                                            </>
+                                                <option key={user.id} value={user.id}>{user.name}</option>
                                         )
                                     })}
                                 </select>
                                 </div>
                             )}
                         </div>
+                       
                     )}
+                    
                     <PizzaList orderId={orderId} />
                     <div>
-                    <Link to={'/orders'}><button onClick={cancelOrder}>Cancel Order</button></Link>
+                    <Link to={'/orders'}><button className="btn-cancel" onClick={cancelOrder}>Cancel Order</button></Link>
                     </div>
                 </>
             )}

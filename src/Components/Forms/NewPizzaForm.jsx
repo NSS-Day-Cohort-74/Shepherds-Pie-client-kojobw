@@ -57,24 +57,38 @@ export const NewPizzaForm = () => {
        
     }
 
-    const handleSave =(event) => {
+    const handleSave = async (event) => {
         event.preventDefault()
-        if (selectedToppings && selectedToppings.length > 0){
-            createPizzaToppingEntry(selectedToppings)
-        }
-        if (!pizza.sizeId || !pizza.cheeseId || !pizza.sauceId){
+
+        if(!pizza.sizeId || !pizza.cheeseId || !pizza.sauceId){
             window.alert("Please ensure that a size, cheese and sauce are selected.")
-        }else{
+            return
+        }
+        try {
             const newPizza = {
                 sizeId: pizza.sizeId,
                 cheeseId: pizza.cheeseId,
                 sauceId:  pizza.sauceId,
                 orderId: pizza.orderId
             }
-            createPizza(newPizza)
-            navigate(`/orders/${orderId}`) 
-        }       
-    }
+            const createdPizza = await createPizza(newPizza)
+            console.log(createdPizza)
+
+            if (selectedToppings && selectedToppings.length > 0){
+                const toppingsWithPizzaId = selectedToppings.map((topping) => ({
+                        pizzaId: createdPizza.id,
+                        toppingId: topping.toppingId
+                    }))
+
+                    await createPizzaToppingEntry(toppingsWithPizzaId)
+                }
+                navigate(`/orders/${orderId}`) 
+            } catch (error) {
+                console.error("There was an error")
+                window.alert("There was an error saving your pizza, please try again.")
+            }
+        }
+
  
     
     if (!sizes || !sauces || !cheeses || !toppings) {return null}

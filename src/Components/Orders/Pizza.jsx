@@ -49,7 +49,7 @@ export const Pizza = ({pizzaObj, getAndSetAllPizzas}) => {
         <section className="pizza">
             <div className="pizza-info">
                 A {pizzaObj.size?.size} Pizza with {pizzaObj.sauce?.name} Sauce, {pizzaObj.cheese?.name} cheese, {
-                    toppings.map((topping,index) => topping.topping.name).join(", ")
+                    toppings.map((topping) => topping.topping.name).join(", ")
                 }.
             </div>
             <div className="pizza-info">
