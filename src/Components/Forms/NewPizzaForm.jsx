@@ -9,7 +9,6 @@ export const NewPizzaForm = () => {
     const [cheeses, setCheeses] = useState()
     const [toppings, setToppings] = useState()
     const [selectedToppings, setSelectedToppings] = useState([])
-    const [hasChanged, setHasChanged] = useState(false)
     const {orderId} = useParams()
     const navigate = useNavigate()
 

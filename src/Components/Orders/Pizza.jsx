@@ -6,10 +6,9 @@ import { useNavigate } from "react-router-dom"
 
 export const Pizza = ({pizzaObj, getAndSetAllPizzas}) => {
     const [toppings, setAllToppings] = useState()
-    const [pizza, setPizza] = useState() 
+    const [pizza, setPizza] = useState()
     const navigate = useNavigate()
     
-    console.log(pizzaObj.id)
   
     const getAndSetToppings = () => {
         getToppingsByPizzaId(pizzaObj.id).then((toppingsArray) => {
@@ -44,6 +43,8 @@ export const Pizza = ({pizzaObj, getAndSetAllPizzas}) => {
             style: 'currency',
             currency: currency,
         }).format(amount)
+
+
     return <>
         <section className="pizza">
             <div className="pizza-info">

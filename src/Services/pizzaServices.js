@@ -76,3 +76,7 @@ export const createPizza = (pizza) => {
         body: JSON.stringify(pizza)
     })
 }
+
+export const getAllPizzaToppings = () => {
+    return fetch (`http://localhost:8088/pizzaToppings`).then(res => res.json())
+}
