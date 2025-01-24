@@ -22,7 +22,7 @@ export const EmployeeList = () =>{
     return (
     <>
         <div className="employees">
-            <h2> Employees</h2>
+            <h2>🍕 Employees 🍕</h2>
          
            
             {employees.map((employee)=>{
