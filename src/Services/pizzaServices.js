@@ -52,18 +52,27 @@ export const deletePizzaToppingsByPizzaId = async (pizza) => {
         }
     }
 
-    export const createPizzaToppingEntry = async (currentToppingsArray) => {
-        for (const topping of currentToppingsArray){
-            const newToppingEntry = {
-                pizzaId: topping.pizzaId,
-                toppingId: topping.toppingId
-            }
-            await fetch(`http://localhost:8088/pizzaToppings`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(newToppingEntry)
+export const createPizzaToppingEntry = async (currentToppingsArray) => {
+    for (const topping of currentToppingsArray){
+        const newToppingEntry = {
+            pizzaId: topping.pizzaId,
+            toppingId: topping.toppingId
+        }
+        await fetch(`http://localhost:8088/pizzaToppings`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newToppingEntry)
             })
         }
     }
+export const createPizza = (pizza) => {
+    return fetch(`http://localhost:8088/pizzas`, {
+        method: "POST",
+        headers:{
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(pizza)
+    })
+}
