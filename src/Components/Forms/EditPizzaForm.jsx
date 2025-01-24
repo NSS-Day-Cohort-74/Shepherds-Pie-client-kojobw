@@ -9,6 +9,7 @@ export const EditPizzaForm = () => {
     const [cheeses, setCheeses] = useState()
     const [toppings, setToppings] = useState()
     const [currentPizzaToppings, setCurrentPizzaToppings] = useState()
+    const [hasChanged, setHasChanged] = useState(false)
     const {pizzaId} = useParams()
     const navigate = useNavigate()
     
@@ -39,6 +40,7 @@ export const EditPizzaForm = () => {
     },[])
 
     const handleToppingChange = (event) => {
+        setHasChanged(true)
         const foundTopping = currentPizzaToppings.find(currentPizzaTopping => {
             return currentPizzaTopping.toppingId === Number(event.target.id)
         })
@@ -61,17 +63,21 @@ export const EditPizzaForm = () => {
 
     const handleSave = (event) => {
         event.preventDefault()
-        const updatedPizza = {
-            id: pizza.id,
-            sizeId: pizza.sizeId,
-            cheeseId: pizza.cheeseId,
-            sauceId:  pizza.sauceId,
-            orderId: pizza.orderId
+        if (hasChanged === true){
+            const updatedPizza = {
+                id: pizza.id,
+                sizeId: pizza.sizeId,
+                cheeseId: pizza.cheeseId,
+                sauceId:  pizza.sauceId,
+                orderId: pizza.orderId
+            }
+            updatePizzaByPizzaId(updatedPizza)
+            deletePizzaToppingsByPizzaId(pizza)
+            createPizzaToppingEntry(currentPizzaToppings)
+            navigate(`/orders/${pizza.order.id}`)
+        }else{
+            window.alert("No changes made to pizza.")
         }
-        updatePizzaByPizzaId(updatedPizza)
-        deletePizzaToppingsByPizzaId(pizza)
-        createPizzaToppingEntry(currentPizzaToppings)
-        navigate(`/orders/${pizza.order.id}`)
         
     }
     
@@ -84,6 +90,11 @@ export const EditPizzaForm = () => {
         }
         return totalCost
     } 
+    const formatCurrency = (amount, locale = 'en-US', currency = 'USD') =>
+        new Intl.NumberFormat(locale, {
+            style: 'currency',
+            currency: currency,
+        }).format(amount)
 
     return <>
         <form className="form">
@@ -93,6 +104,7 @@ export const EditPizzaForm = () => {
                     <label>Size:</label>
                     <select id="sizes" defaultValue={pizza.size.id} 
                         onChange={(event) => {
+                            setHasChanged(true)
                             const copy ={...pizza}
                             copy.sizeId = Number(event.target.value)
                             setPizza(copy)
@@ -108,6 +120,7 @@ export const EditPizzaForm = () => {
                         <label>Sauces:</label>
                         <select id="sauces" defaultValue={pizza.sauce.id} 
                             onChange={(event) => {
+                                setHasChanged(true)
                                 const copy ={...pizza}
                                 copy.sauceId = Number(event.target.value)
                                 setPizza(copy)
@@ -123,6 +136,7 @@ export const EditPizzaForm = () => {
                         <label>Cheeses:</label>
                         <select id="cheeses" defaultValue={pizza.cheese.id} 
                             onChange={(event) => {
+                                setHasChanged(true)
                                 const copy ={...pizza}
                                 copy.cheeseId = Number(event.target.value)
                                 setPizza(copy)
@@ -151,7 +165,7 @@ export const EditPizzaForm = () => {
                     </div>
             </fieldset>
             <fieldset>
-                <div>Updated Cost: ${updatedCost()}</div>
+                <div>Updated Cost: {formatCurrency(updatedCost())}</div>
             </fieldset>
             <fieldset>
                 <button className="btn-info" onClick={handleSave}>Save Changes</button>
