@@ -43,3 +43,54 @@ export const postOrder = (pizza) => {
 export const getPizzas = () => {
     return fetch('http://localhost:8088/pizzas').then(res => res.json())
 }
+
+export const updatePizzaByPizzaId = (pizza) => {
+    return fetch (`http://localhost:8088/pizzas/${pizza.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(pizza)
+    })
+}
+
+export const deletePizzaToppingsByPizzaId = async (pizza) => {
+    const response = await fetch (`http://localhost:8088/pizzaToppings?pizzaId=${pizza.id}`)
+    const toppings = await response.json()
+
+    for (const topping of toppings){
+       console.log(topping)
+       await fetch(`http://localhost:8088/pizzaToppings/${topping.id}`,{
+        method: "DELETE"
+       })
+        }
+    }
+
+export const createPizzaToppingEntry = async (currentToppingsArray) => {
+    for (const topping of currentToppingsArray){
+        const newToppingEntry = {
+            pizzaId: topping.pizzaId,
+            toppingId: topping.toppingId
+        }
+        await fetch(`http://localhost:8088/pizzaToppings`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newToppingEntry)
+            })
+        }
+    }
+export const createPizza = (pizza) => {
+    return fetch(`http://localhost:8088/pizzas`, {
+        method: "POST",
+        headers:{
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(pizza)
+    })
+}
+
+export const getAllPizzaToppings = () => {
+    return fetch (`http://localhost:8088/pizzaToppings`).then(res => res.json())
+}

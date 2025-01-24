@@ -1,0 +1,106 @@
+.employees {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f4f4f9;
+}
+
+h2 {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    text-align: center;
+}
+
+
+
+
+
+/* Styling for the links */
+.employee a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Hover effect on employee links */
+.employee a:hover {
+    text-decoration: underline;
+}
+
+/* Styling for when the list is empty */
+.employees p {
+    text-align: center;
+    font-size: 16px;
+    color: #888;
+}
+
+/* Styling for the employee card */
+.employee {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.employee:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.employee h2 {
+    font-size: 20px;
+    color: #007bff;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.employee-info {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.employee-info div {
+    margin-bottom: 10px;
+}
+
+/* Styling for the spans (labels and values) */
+.employee-info span {
+    font-weight: bold;
+    padding-left: 5px;  /* Space between the label text and the span */
+}
+
+/* Styling for employee contacts section */
+.employee-contacts {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #555;
+}
+
+.employee-contacts div {
+    display: flex;
+    margin-bottom: 8px;
+    padding: 5px 0;
+}
+
+.employee-contacts div span {
+    color: #007bff; /* Blue color for values */
+    font-weight: normal;
+    padding-left: 5px;  /* Space between the label text and the span */
+}
+
+/* Add different color for the labels (non-span text) */
+.employee-contacts div > :not(span) {
+    color: #333;  /* Dark color for labels */
+    font-weight: bold;  /* Make labels bold */
+}
+
+/* Optional: Add hover effect for the employee contact details */
+.employee-contacts div:hover {
+    background-color: #f4f4f9; /* Light background on hover */
+    cursor: pointer;
+}
